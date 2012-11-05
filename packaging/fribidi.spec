@@ -1,68 +1,66 @@
-#sbs-git:slp/unmodified/fribidi fribidi 0.19.5 b36fcb1ced2e1294dd147e36f120f5161e53406d
-
 Name:           fribidi
-Version:        0.19.5
-Release:        5
-License:        LGPL-2.0+
-Summary:        Library implementing the Unicode Bidirectional Algorithm
-Url:            http://fribidi.org
+Version:        0.19.4
+Release:        1
+Summary:        Free Implementation of BiDi Algorithm
+License:        LGPL-2.1
 Group:          System/Libraries
-Source:         %{name}-%{version}.tar.bz2
-BuildRequires:  autoconf
-BuildRequires:  automake
-BuildRequires:  libtool
-BuildRequires:  pkgconfig
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
+Url:            http://fribidi.org/
+AutoReqProv:    on
+Provides:       locale(ar;he)
+Source:         fribidi-%{version}.tar.bz2
+Source2:        baselibs.conf
+BuildRequires:  pkg-config
 
 %description
-A library to handle bidirectional scripts (for example Hebrew, Arabic),
-so that the display is done in the proper way; while the text data itself
-is always written in logical order.
+This library implements the algorithm as described in the "Unicode
+Standard Annex #9, the Bidirectional Algorithm,
+http://www.unicode.org/unicode/reports/tr9/". FriBidi is exhaustively
+tested against the Bidi Reference Code and, to the best of the
+developers' knowledge, does notcontain any conformance bugs.
+
+The API was inspired by the document "Bi-Di languages support - BiDi
+API proposal" by Franck Portaneri, which he wrote as a proposal for
+adding BiDi support to Mozilla.
 
 %package devel
-Summary:        Libraries and include files for FriBidi
-Group:          Development/Libraries
+License:        LGPL-2.1
+Summary:        Development Files for FriBiDi
+Group:          Development/Libraries/C and C++
 Requires:       %{name} = %{version}
+Requires:       pkg-config
 
 %description devel
-Include files and libraries needed for developing applications which use
-FriBidi.
+This package provides headers and manual files for FriBiDi.
 
 %prep
 %setup -q
 
-
 %build
-
 %configure --disable-static
-make %{?_smp_mflags}
+%__make %{?_smp_mflags}
+
+%check
+%__make check
 
 %install
 %make_install
-
-
-
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
-
-
-
-
 %files
-%defattr(-,root,root,-)
-%doc README AUTHORS COPYING ChangeLog THANKS NEWS TODO
+%defattr(-,root,root)
 %{_bindir}/fribidi
 %{_libdir}/libfribidi.so.*
-
+%doc COPYING
 
 %files devel
-%defattr(-,root,root,-)
-%{_includedir}/fribidi
+%defattr(-, root, root)
+%dir %{_includedir}/fribidi
+%{_includedir}/fribidi/*
 %{_libdir}/libfribidi.so
-%{_libdir}/pkgconfig/*.pc
-%{_mandir}/man3/%{name}_*.gz
+%{_libdir}/pkgconfig/fribidi.pc
+%doc %{_mandir}/man3/fribidi_*
 
+%changelog
