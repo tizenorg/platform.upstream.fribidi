@@ -53,7 +53,7 @@ This package provides headers and manual files for FriBiDi.
 %defattr(-,root,root)
 %{_bindir}/fribidi
 %{_libdir}/libfribidi.so.*
-%doc COPYING
+%license COPYING
 
 %files devel
 %defattr(-, root, root)
