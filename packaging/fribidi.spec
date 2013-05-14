@@ -1,5 +1,5 @@
 Name:           fribidi
-Version:        0.19.4
+Version:        0.19.5
 Release:        1
 Summary:        Free Implementation of BiDi Algorithm
 License:        LGPL-2.1
