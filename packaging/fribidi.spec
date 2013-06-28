@@ -9,6 +9,7 @@ AutoReqProv:    on
 Provides:       locale(ar;he)
 Source:         fribidi-%{version}.tar.bz2
 Source2:        baselibs.conf
+Source1001: 	fribidi.manifest
 BuildRequires:  pkg-config
 
 %description
@@ -34,6 +35,7 @@ This package provides headers and manual files for FriBiDi.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %configure --disable-static
@@ -50,12 +52,14 @@ This package provides headers and manual files for FriBiDi.
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{_bindir}/fribidi
 %{_libdir}/libfribidi.so.*
 %license COPYING
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %dir %{_includedir}/fribidi
 %{_includedir}/fribidi/*
