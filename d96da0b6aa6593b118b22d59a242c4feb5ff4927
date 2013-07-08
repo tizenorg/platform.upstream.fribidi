@@ -1,0 +1,8 @@
+Change-Id: Id96da0b6aa6593b118b22d59a242c4feb5ff4927
+Code-Review+2: Ryan Ware <ware@linux.intel.com>
+Verified+1: Ryan Ware <ware@linux.intel.com>
+Submitted-by: Ryan Ware <ware@linux.intel.com>
+Submitted-at: Mon, 08 Jul 2013 10:05:55 -0700
+Reviewed-on: https://review.tizen.org/gerrit/4637
+Project: platform/upstream/fribidi
+Branch: refs/heads/tizen
